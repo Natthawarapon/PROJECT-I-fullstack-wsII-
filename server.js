@@ -6,9 +6,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 
-app.get('/', function (request, respone) {
-    respone.send('Hello, Express.js');
-});
+
 
 //app.get('/test', function (request, respone) {
 //  //  respone.send('<H1>test</H1>');
@@ -17,7 +15,7 @@ app.get('/', function (request, respone) {
 //app.use(express.static('static'));
 app.set('view engine','ejs'); //เอา ejs สร้างให้มัน
 
-app.get('/index', function (req, res) {
+app.get('/', function (req, res) {
      res.render('pages/index');
  });
 
@@ -27,7 +25,6 @@ app.get('/index', function (req, res) {
      var bdate ='27/06/1997';
     res.render('pages/about',{ fullname : name , hobbies : hobbies,bdate : bdate });
 });
-
 
 app.get('/products', function (req, res) {
     //res.download('./static/index.html');
