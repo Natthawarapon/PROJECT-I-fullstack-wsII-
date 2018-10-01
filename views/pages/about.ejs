@@ -1,0 +1,22 @@
+<% include ../partials/header %>
+   <div class="row">
+            <div class="col-xs|sm|md|lg|xl-1-12">
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">Natthawarapon Tubtiang</h3>
+                  <p class="card-text">Software Engineering</p>
+                </div>
+              </div>
+            </div>
+           
+     </div>
+
+<h1><%=fullname %></h1>
+
+<ul>
+    <% hobbies.forEach(function(hobby) { %>
+        <li><%= hobby %></li>
+    <% }); %>
+</ul>
+<h3><%=bdate %></h3>
+ <% include ../partials/footer %>
