@@ -142,7 +142,7 @@ app.post('/users/update',function(req,res){
 app.get('/products/delete', function (req, res) {
   
     var id = req.param('id');
-    var sql = 'delete  from products';
+    var sql = 'delete from products';
     if (id) {
         sql += ' where id ='+id; 
         }
@@ -159,10 +159,10 @@ app.get('/products/delete', function (req, res) {
 
 });
 app.get('/insert', function (req, res) {
-    res.render('pages/insert')
+    res.render('pages/insertpro')
 });
 
-app.post('/products/insert',function(req,res){
+app.post('/products/insertpro',function(req,res){
     var id = req.body.id;
     var title = req.body.title;
     var price = req.body.price;
