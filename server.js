@@ -160,7 +160,7 @@ app.get('/products_delete/:id', function (req, res) {
     })
 
 });
-app.get('/insertpro', function (req, res) {
+app.get('/insert', function (req, res) {
     res.render('pages/insertpro')
 });
 
@@ -188,7 +188,7 @@ app.get('/insertusers', function (req, res) {
     res.render('pages/insertusers')
 });
 
-app.post('/products/insertusers',function(req,res){
+app.post('/users/insertusers',function(req,res){
     var id = req.body.id;
     var email = req.body.email;
     var password = req.body.password;
