@@ -125,7 +125,9 @@ app.post('/users/update',function(req,res){
     var id = req.body.id;
     var title = req.body.email;
     var price = req.body.password;
-    var sql =`update users set email = '${email}',password='${password}' where id = '${id}'` ;
+    var sql =`UPDATE users 
+                SET email = '${email}', password = '${password}' 
+                WHERE id = '${id}'` ;
   
    
     db.any(sql)
