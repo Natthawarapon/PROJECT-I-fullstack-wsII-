@@ -139,7 +139,7 @@ app.post('/users/update',function(req,res){
     })
 });
 
-app.get('/products/delete:pid', function (req, res) {
+app.get('/productsdelete:pid', function (req, res) {
   
     var id = req.param('id');
     var sql = 'DELETE FROM products';
