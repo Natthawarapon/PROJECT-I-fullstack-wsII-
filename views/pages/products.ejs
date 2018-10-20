@@ -22,7 +22,7 @@
             <td><%= product.title%></td>
             <td><%= product.price%></td>
              <td><a name="" id="" class="btn btn-danger" href="/products/<%= product.id%>" role="button">Edit</a></td>
-              <td><a onclick="prodel()" class="btn btn-danger" href="/products_delete/<%= product.id%>" role="button">Delete</a></td>
+              <td><a onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" href="/products_delete/<%= product.id%>" role="button">Delete</a></td>
         
         </tr>
          <% }); %>
@@ -42,14 +42,12 @@
     </script>
 
     <script>
-    function prodel() {
-
-        if (confirm('Are you sure you want to delete this thing into the database?')) {
-    // Save it!
-} else {
-    // Do nothing!
+   function confirmDelete(delUrl) {
+  if (confirm("Are you sure you want to delete")) {
+    document.location = delUrl;
+  }
 }
-    }
+</script>
     </script>
 </div>
 
