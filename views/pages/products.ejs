@@ -15,7 +15,7 @@
             <th><a name="" id="" class="btn btn-primary" href="/insert" role="button">Add New</a></th>
         </tr>
     </thead>
-    <tbody id="searchpro">
+    <tbody id="myTable" >
        <% products.forEach(function(product){ %> 
        <tr>
             <td scope="row"><%= product.id%></td>
@@ -33,9 +33,9 @@
 </div>
 <script>
     $(document).ready(function(){
-      $("#searchpro").on("keyup", function() {
+      $("#myInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();
-        $("#searchpro tr").filter(function() {
+        $("#myTable tr").filter(function() {
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
