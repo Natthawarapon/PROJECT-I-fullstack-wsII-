@@ -143,11 +143,11 @@ app.get('/products/delete', function (req, res) {
 });
 app.get('/insert', function (req, res) {
 
-    res.render('pages/products/product_insert')
+    res.render('pages/product_insert')
     
 });
 
-app.post('/products/product_insert',function(req,res){
+app.post('product_insert',function(req,res){
     var id = req.body.id;
     var title = req.body.title;
     var price = req.body.price;
