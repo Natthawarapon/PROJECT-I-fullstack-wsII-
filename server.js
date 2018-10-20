@@ -139,17 +139,17 @@ app.post('/users/update',function(req,res){
     })
 });
 
-app.get('/productsdelete:pid', function (req, res) {
+app.get('/products_delete:pid', function (req, res) {
   
-    var id = req.param('id');
+    var id = req.params.id;
     var sql = 'DELETE FROM products';
     if (id) {
-        sql += ' where id ='+pid; 
+        sql += ' WHERE id ='+id; 
         }
     db.any(sql)
     .then(function(data){
         console.log('DATA:'+data);
-        res.render('pages/products',{products:data})
+        res.redirect('/products')
         
     })
     .catch(function(error){
