@@ -81,7 +81,7 @@ app.get('/users/:id', function (req, res) {
         
     })
 });
-
+//user
 app.get('/users', function (req, res) {
     //res.download('./static/index.html');
     //res.redirect('/about'); var pgp =require('pg-promise');

@@ -1,0 +1,47 @@
+<% include ../partials/header %>
+<script language="javascript">
+function fncAlert(){
+
+alert('Do you want to delete product');
+
+}
+
+</script>
+
+<form action ="/user/update" method = "post">
+<div class="jumbotron">
+<h1 class="display-4">USERS</h1>
+<div class="form-group">
+  <label for="">ID</label>
+  <input type="number"
+    class="form-control" value="<%= user.id %>" name="id" id="" aria-describedby="helpId" placeholder="">
+  <small id="helpId" class="form-text text-muted">User Id</small>
+</div>
+<div class="form-group">
+  <label for="">Email</label>
+  <input type="email"
+    class="form-control" value="<%= user.email %>" name="email" id="" aria-describedby="helpId" placeholder="">
+  <small id="helpId" class="form-text text-muted">User Email</small>
+</div>
+<div class="form-group">
+  <label for="">Password</label>
+  <input type="password"
+    class="form-control" value="<%= user.password %>" name="password" id="" aria-describedby="helpId" placeholder="">
+  <small id="helpId" class="form-text text-muted">User Password</small>
+</div>
+<!--<div class="form-group">
+  <label for="">Creat At</label>
+  <input type="datetime"
+    class="form-control" name="creat at" id="" aria-describedby="helpId" placeholder="">
+  <small id="helpId" class="form-text text-muted">Creat At</small>
+</div>-->
+
+<a name="" id="" class="btn btn-secondary" href="/users" role="button">CANCLE</a>
+<button type="submit" class="btn btn-success">SAVE</button>
+<a name="" id="" OnClick="JavaScript:fncAlert();" class="btn btn-danger" href="/user_delete/<%= user.id %>" role="button">DELETE</a>
+
+</div>
+</form>
+
+
+<% include ../partials/footer %>
