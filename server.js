@@ -192,7 +192,7 @@ app.post('/users/insertusers',function(req,res){
     var id = req.body.id;
     var email = req.body.email;
     var password = req.body.password;
-    var sql =`INSERT INTO products (id, email, password)
+    var sql =`INSERT INTO users (id, email, password)
     VALUES ('${id}', '${email}', '${password}')`;
   
     console.log('UPDATE:' + sql);
