@@ -160,7 +160,7 @@ app.get('/products_delete/:id', function (req, res) {
     })
 
 });
-app.get('/insert', function (req, res) {
+app.get('/insertpro', function (req, res) {
     res.render('pages/insertpro')
 });
 
