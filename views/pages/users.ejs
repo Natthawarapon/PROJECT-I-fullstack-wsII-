@@ -1,18 +1,14 @@
 <% include ../partials/header %>
-<div class="row">
-            <div class="col-xs|sm|md|lg|xl-1-12">
-              <div class="card">
-                <div class="card-body">
-                  <h3 class="card-title">Natthawarapon Tubtiang</h3>
-              <table class="table">
-            <thead>
-            <tr>
+ <h3 >User Information</h3>
+<table class="table">
+    <thead>
+        <tr>
             <th>ID</th>
             <th>Email</th>
             <th>Password</th>
-            </tr>
-            </thead>
-        <tbody>
+        </tr>
+    </thead>
+    <tbody>
        <% users.forEach(function(users){ %> 
        <tr>
             <td scope="row"><%= users.id%></td>
@@ -20,14 +16,8 @@
             <td><%=  users.password%></td>
         </tr>
          <% }); %>
-        </tbody>
+</tbody>
  
     
-        </table>
-                </div>
-              </div>
-            </div>
-           
-     </div>
-
+</table>
  <% include ../partials/footer %>
