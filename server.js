@@ -158,6 +158,11 @@ app.post('/products/insert',function(req,res){
         console.log('ERROR:' + error);
     })
 });
+app.get('/insert', function (req, res) {
+
+    res.render('pages/insert')
+    
+});
 
 
 var port = process.env.PORT || 8080;
