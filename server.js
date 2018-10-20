@@ -122,6 +122,26 @@ app.post('/products/update',function(req,res){
     })
 });
 
+app.get('/products/delete', function (req, res) {
+  
+    var id = req.param('id');
+    var sql = 'delete  from products';
+    if (id) {
+        sql += ' where id ='+id; 
+        }
+    db.any(sql)
+    .then(function(data){
+        console.log('DATA:'+data);
+        res.render('pages/products',{products:data})
+        
+    })
+    .catch(function(error){
+        console.log('ERROR:'+error);
+        
+    })
+
+});
+
 
 
 var port = process.env.PORT || 8080;
