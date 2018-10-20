@@ -141,13 +141,20 @@ app.get('/products/delete', function (req, res) {
     })
 
 });
+app.get('/insert', function (req, res) {
+
+    res.render('pages/products/product_insert')
+    
+});
 
 app.post('/products/product_insert',function(req,res){
     var id = req.body.id;
     var title = req.body.title;
     var price = req.body.price;
-    var sql =`insert into products (id,title,price) values ('${title}','${price}','${id}')` ;
+    var sql =`INSERT INTO products (id, title, price)
+    VALUES ('${id}', '${title}', '${price}')`;
   
+    console.log('UPDATE:' + sql);
     db.any(sql)
     .then(function (data) {
         console.log('DATA:' + data);
@@ -157,6 +164,7 @@ app.post('/products/product_insert',function(req,res){
     .catch(function (error) {
         console.log('ERROR:' + error);
     })
+    
 });
 app.get('/insert', function (req, res) {
 
