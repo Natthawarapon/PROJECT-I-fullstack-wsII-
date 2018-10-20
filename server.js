@@ -142,7 +142,7 @@ app.get('/products/delete', function (req, res) {
 
 });
 
-app.post('/products/insert',function(req,res){
+app.post('/products/product_insert',function(req,res){
     var id = req.body.id;
     var title = req.body.title;
     var price = req.body.price;
@@ -160,7 +160,7 @@ app.post('/products/insert',function(req,res){
 });
 app.get('/insert', function (req, res) {
 
-    res.render('pages/insert')
+    res.render('pages/product_insert')
     
 });
 
