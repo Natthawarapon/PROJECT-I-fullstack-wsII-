@@ -192,14 +192,14 @@ app.post('/users/insertusers',function(req,res){
     var id = req.body.id;
     var email = req.body.email;
     var password = req.body.password;
-    var sql =`INSERT INTO users (id, email, passwprd)
+    var sql =`INSERT INTO products (id, email, password)
     VALUES ('${id}', '${email}', '${password}')`;
   
     console.log('UPDATE:' + sql);
     db.any(sql)
     .then(function (data) {
         console.log('DATA:' + data);
-        res.render('/users/insertusers')
+        res.redirect('/users')
 
     })
     .catch(function (error) {
@@ -207,7 +207,6 @@ app.post('/users/insertusers',function(req,res){
     })
     
 });
-
 
 
 
