@@ -87,7 +87,7 @@ app.get('/users', function (req, res) {
     if (id) {
         sql += ' where id ='+id;
         }
-    db.any(sql+' order by id ASC')
+    db.any(sql+ 'order by id ASC')
     .then(function(data){
         console.log('DATA:'+data);
         res.render('pages/users',{users:data})
