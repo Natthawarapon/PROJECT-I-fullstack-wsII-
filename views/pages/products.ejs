@@ -15,7 +15,7 @@
             <th><a name="" id="" class="btn btn-primary" href="/insert" role="button">Add New</a></th>
         </tr>
     </thead>
-    <tbody id="myTable" >
+    <tbody id="protable" >
        <% products.forEach(function(product){ %> 
        <tr>
             <td scope="row"><%= product.id%></td>
@@ -34,15 +34,17 @@
     $(document).ready(function(){
       $("#myInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function() {
+        $("#myprotable tr").filter(function() {
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
     });
     </script>
+
     <script>
     function prodel() {
-        if (prodel('Are you sure you want to delete this thing into the database?')) {
+
+        if (confirm('Are you sure you want to delete this thing into the database?')) {
     // Save it!
 } else {
     // Do nothing!
