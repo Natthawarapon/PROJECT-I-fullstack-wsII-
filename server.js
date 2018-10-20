@@ -160,7 +160,7 @@ app.get('/products_delete/:id', function (req, res) {
     })
 
 });
-app.get('/insert', function (req, res) {
+app.get('/insertpro', function (req, res) {
     res.render('pages/insertpro')
 });
 
@@ -183,6 +183,31 @@ app.post('/products/insertpro',function(req,res){
     })
     
 });
+
+app.get('/insertusers', function (req, res) {
+    res.render('pages/insertusers')
+});
+
+app.post('/products/insertusers',function(req,res){
+    var id = req.body.id;
+    var email = req.body.email;
+    var password = req.body.password;
+    var sql =`INSERT INTO users (id, email, passwprd)
+    VALUES ('${id}', '${email}', '${password}')`;
+  
+    console.log('UPDATE:' + sql);
+    db.any(sql)
+    .then(function (data) {
+        console.log('DATA:' + data);
+        res.redirect('/users')
+
+    })
+    .catch(function (error) {
+        console.log('ERROR:' + error);
+    })
+    
+});
+
 
 
 
