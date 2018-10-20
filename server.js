@@ -159,10 +159,10 @@ app.get('/products/delete', function (req, res) {
 
 });
 app.get('/insert', function (req, res) {
-    res.render('pages/product_insert')
+    res.render('pages/insert')
 });
 
-app.post('product_insert',function(req,res){
+app.post('/products/insert',function(req,res){
     var id = req.body.id;
     var title = req.body.title;
     var price = req.body.price;
@@ -181,11 +181,7 @@ app.post('product_insert',function(req,res){
     })
     
 });
-app.get('/insert', function (req, res) {
 
-    res.render('pages/product_insert')
-    
-});
 
 
 var port = process.env.PORT || 8080;
