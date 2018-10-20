@@ -160,6 +160,26 @@ app.get('/products_delete/:id', function (req, res) {
     })
 
 });
+
+app.get('/users_delete/:id', function (req, res) {
+  
+    var id = req.params.id;
+    var sql = 'DELETE FROM users';
+    if (id) {
+        sql += ' WHERE id ='+id; 
+        }
+    db.any(sql)
+    .then(function(data){
+        console.log('DATA:'+data);
+        res.redirect('/users')
+        
+    })
+    .catch(function(error){
+        console.log('ERROR:'+error);
+        
+    })
+
+});
 app.get('/insertpro', function (req, res) {
     res.render('pages/insertpro')
 });
