@@ -66,14 +66,11 @@ app.get('/products/:pid', function (req, res) {
 
 app.get('/users/:id', function (req, res) {
     var id = req.params.id;
-    var sql = 'select * from users';
-    if (id) {
-        sql += ' where id ='+id;
-    }
+    var sql = "select * from users where id ="+id;
     db.any(sql)
     .then(function(data){
         console.log('DATA:'+data);
-        res.render('pages/users',{users:data})
+        res.render('pages/users_edit',{users:data[0]})
         
     })
     .catch(function(error){
