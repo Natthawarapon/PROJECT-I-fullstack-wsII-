@@ -85,12 +85,12 @@ app.get('/users/:id', function (req, res) {
 app.get('/users', function (req, res) {
     //res.download('./static/index.html');
     //res.redirect('/about'); var pgp =require('pg-promise');
-    var id = req.param('id');
+    var id = req.param('id'+' order by id ASC');
     var sql = 'select * from users';
     if (id) {
         sql += ' where id ='+id;
         }
-    db.any(sql)
+    db.any(sql+' order by id ASC')
     .then(function(data){
         console.log('DATA:'+data);
         res.render('pages/users',{users:data})
@@ -122,6 +122,26 @@ app.post('/products/update',function(req,res){
     })
 });
 
+
+//Update data users 
+app.post('/users/update',function(req,res){
+    var id = req.body.id;
+    var title = req.body.email;
+    var price = req.body.password;
+    var sql =`update users set email = '${email}',password='${password}' where id = '${id}'` ;
+  
+   
+    db.any(sql)
+    .then(function (data) {
+        console.log('DATA:' + data);
+        res.redirect('/users')
+
+    })
+    .catch(function (error) {
+        console.log('ERROR:' + error);
+    })
+});
+
 app.get('/products/delete', function (req, res) {
   
     var id = req.param('id');
@@ -142,9 +162,7 @@ app.get('/products/delete', function (req, res) {
 
 });
 app.get('/insert', function (req, res) {
-
     res.render('pages/product_insert')
-    
 });
 
 app.post('product_insert',function(req,res){
