@@ -199,7 +199,7 @@ app.post('/users/insertusers',function(req,res){
     db.any(sql)
     .then(function (data) {
         console.log('DATA:' + data);
-        res.redirect('/users')
+        res.render('/users/insertusers')
 
     })
     .catch(function (error) {
