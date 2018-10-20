@@ -1,35 +1,29 @@
 <% include ../partials/header %>
-
-
 <div class="jumbotron">
-<h1 class="display-4">Users Edit</h1>
-<form action ="/users/update" method = "post">
+            <h1 class="display-3">Product Edit</h1>
+<form action ="/user/update" method="post">        
 <div class="form-group">
   <label for="">ID</label>
-  <input type="number"
-    class="form-control" value="<%= users.id %>" name="id" id="" aria-describedby="helpId" placeholder="">
-  <small id="helpId" class="form-text text-muted">User Id</small>
+  <input type="number" name="id" id="" 
+  class="form-control" value="<%= users.id%>" placeholder="" aria-describedby="helpId">
+  <small id="helpId" class="text-muted">User ID</small>
 </div>
 <div class="form-group">
   <label for="">Email</label>
-  <input type="email"
-    class="form-control" value="<%= users.email %>" name="email" id="" aria-describedby="helpId" placeholder="">
-  <small id="helpId" class="form-text text-muted">User Email</small>
+  <input type="text" name="email" id="" 
+  class="form-control" placeholder="" value="<%=  users.email%>" aria-describedby="helpId">
+  <small id="helpId" class="text-muted">Product Title</small>
 </div>
 <div class="form-group">
   <label for="">Password</label>
-  <input type="password"
-    class="form-control" value="<%= users.password %>" name="password" id="" aria-describedby="helpId" placeholder="">
-  <small id="helpId" class="form-text text-muted">User Password</small>
+  <input type="number" name="password" id="" 
+  class="form-control" placeholder="" value="<%=  users.password%>" aria-describedby="helpId">
+  <small id="helpId" class="text-muted">Product Price</small>
 </div>
+<a name="" id="" class="btn btn-secondary" href="/products" role="button">Cancel</a>
+<button type="submit" class="btn btn-success"  >Save</button>
 
-
-<a name="" id="" class="btn btn-secondary" href="/users" role="button">CANCLE</a>
-<button type="submit" class="btn btn-success">SAVE</button>
-
-
-</div>
+</div>  
 </form>
-
 
 <% include ../partials/footer %>

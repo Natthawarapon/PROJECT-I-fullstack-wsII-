@@ -121,10 +121,10 @@ app.post('/products/update',function(req,res){
 
 
 //Update data users 
-app.post('/users/update',function(req,res){
+app.post('/user/update',function(req,res){
     var id = req.body.id;
-    var title = req.body.email;
-    var price = req.body.password;
+    var email = req.body.email;
+    var password = req.body.password;
     var sql =`UPDATE users 
                 SET email = '${email}', password = '${password}' 
                 WHERE id = '${id}'` ;
