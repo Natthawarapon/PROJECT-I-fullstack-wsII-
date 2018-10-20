@@ -111,9 +111,15 @@ app.post('/products/update',function(req,res){
     var sql =`update products set title = '${title}',price='${price}' where id = '${id}'` ;
   
    
-   console.log('UPDATE :'+sql);
-   
-res.redirect('/products');
+    db.any(sql)
+    .then(function (data) {
+        console.log('DATA:' + data);
+        res.redirect('/products')
+
+    })
+    .catch(function (error) {
+        console.log('ERROR:' + error);
+    })
 });
 
 
