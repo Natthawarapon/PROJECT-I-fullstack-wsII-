@@ -22,7 +22,7 @@
             <td><%=  users.email%></td>
             <td><%=  users.password%></td>
             <td><a name="" id="" class="btn btn-danger" href="/users/<%= users.id%>" role="button">Edit</a></td>
-              <td><a name="" id="" onclick="return usersdel()" class="btn btn-danger" href="/users/<%= users.id%>" role="button">Delete</a></td>
+              <td><a name="" id="" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" href="/users_delete/<%= users.id%>" role="button">Delete</a></td>
         </tr>
          <% }); %>
 </tbody>
@@ -41,12 +41,13 @@
     </script>
 
     <script>
-   function usersdel() {
+  function confirmDelete(delUrl) {
   if (confirm("Are you sure you want to delete")) {
-    
+    document.location = delUrl;
   }
 }
 </script>
     </script>
+    
     </div>
  <% include ../partials/footer %>
