@@ -22,7 +22,7 @@
             <td><%= product.title%></td>
             <td><%= product.price%></td>
              <td><a name="" id="" class="btn btn-danger" href="/products/<%= product.product_id%>" role="button">Edit</a></td>
-              <td><a onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" href="/products_delete/<%= product.product_id%>" role="button">Delete</a></td>
+              <td><a onclick="return confirm('Are you sure you want to delete?')" class="btn btn-warning" href="/products_delete/<%= product.product_id%>" role="button">Delete</a></td>
         
         </tr>
          <% }); %>
