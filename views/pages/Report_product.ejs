@@ -1,7 +1,8 @@
 <% include ../partials/header %>
 <div class="container">
 &nbsp;
-<h1 >Report:Purchase by item</h1>
+<h1 >Report: Purchase by item</h1>
+&nbsp;
 <table class="table">
     <thead>
         <tr>
@@ -13,9 +14,9 @@
     <tbody>
     <% products.forEach(function(product) { %>
         <tr>
-            <td scope="row"><font color="blue"><%= product.title %></font></td>
-            <td><font color="blue"><%= product.quantity %></font></td>
-            <td><font color="blue">$<%= product.price %></font></td>
+            <td scope="row"><font color="Crimson"><%= product.title %></font></td>
+            <td><font color="Crimson"><%= product.quantity %></font></td>
+            <td><font color="Crimson">$<%= product.price %></font></td>
         </tr>
         <% }); %>
         <% sum.forEach(function(sum) { %>
