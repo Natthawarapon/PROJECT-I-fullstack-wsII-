@@ -166,7 +166,7 @@ app.get('/users_delete/:users_id', function (req, res) {
     var users_id = req.params.users_id;
     var sql = 'DELETE FROM users';
     if (users_id) {
-        sql += ' WHERE users_id ='+user_id; 
+        sql += ' WHERE users_id ='+ users_id; 
         }
     db.any(sql)
     .then(function(data){
