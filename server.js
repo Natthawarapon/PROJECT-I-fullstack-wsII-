@@ -29,12 +29,12 @@ app.get('/', function (req, res) {
 app.get('/products', function (req, res) {
     //res.download('./static/index.html');
     //res.redirect('/about'); var pgp =require('pg-promise');
-    var id = req.param('id');
+    var product_id = req.param('product_id');
     var sql = 'select * from products';
-    if (id) {
-        sql += ' where id ='+id+' order by id ASC'; 
+    if (product_id) {
+        sql += ' where product_id ='+product_id+' order by product_id ASC'; 
         }
-    db.any(sql+ ' order by id ASC')
+    db.any(sql+ ' order by product_id ASC')
     .then(function(data){
         console.log('DATA:'+data);
         res.render('pages/products',{products:data})
@@ -47,9 +47,9 @@ app.get('/products', function (req, res) {
 
 });
 
-app.get('/products/:pid', function (req, res) {
- var pid = req.params.pid;
- var sql ="select * from products where id = "+ pid;
+app.get('/products/:product_id', function (req, res) {
+ var product_id = req.params.product_id;
+ var sql ="select * from products where product_id = "+ product_id;
         
     db.any(sql)
     .then(function(data){
@@ -102,10 +102,10 @@ app.get('/users', function (req, res) {
 
 //Update data products 
 app.post('/products/update',function(req,res){
-    var id = req.body.id;
+    var product_id = req.body.product_id;
     var title = req.body.title;
     var price = req.body.price;
-    var sql =`update products set title = '${title}',price='${price}' where id = '${id}'` ;
+    var sql =`update products set title = '${title}',price='${price}' where product_id = '${product_id}'` ;
   
    
     db.any(sql)
@@ -141,12 +141,12 @@ app.post('/user/update',function(req,res){
     })
 });
 
-app.get('/products_delete/:id', function (req, res) {
+app.get('/products_delete/:product_id', function (req, res) {
   
-    var id = req.params.id;
+    var product_id = req.params.product_id;
     var sql = 'DELETE FROM products';
-    if (id) {
-        sql += ' WHERE id ='+id; 
+    if (product_id) {
+        sql += ' WHERE product_id ='+product_id; 
         }
     db.any(sql)
     .then(function(data){
@@ -185,11 +185,11 @@ app.get('/insertpro', function (req, res) {
 });
 
 app.post('/products/insertpro',function(req,res){
-    var id = req.body.id;
+    var product_id = req.body.product_id;
     var title = req.body.title;
     var price = req.body.price;
-    var sql =`INSERT INTO products (id, title, price)
-    VALUES ('${id}', '${title}', '${price}')`;
+    var sql =`INSERT INTO products (product_id, title, price)
+    VALUES ('${product_id}', '${title}', '${price}')`;
   
     console.log('UPDATE:' + sql);
     db.any(sql)

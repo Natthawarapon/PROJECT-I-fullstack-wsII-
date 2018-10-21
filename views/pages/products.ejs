@@ -7,7 +7,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>product_id</th>
             <th>Title</th>
             <th>Price</th>
                <th>Edit</th>
@@ -18,11 +18,11 @@
     <tbody id="protable" >
        <% products.forEach(function(product){ %> 
        <tr>
-            <td scope="row"><%= product.id%></td>
+            <td scope="row"><%= product.product_id%></td>
             <td><%= product.title%></td>
             <td><%= product.price%></td>
-             <td><a name="" id="" class="btn btn-danger" href="/products/<%= product.id%>" role="button">Edit</a></td>
-              <td><a onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" href="/products_delete/<%= product.id%>" role="button">Delete</a></td>
+             <td><a name="" id="" class="btn btn-danger" href="/products/<%= product.product_id%>" role="button">Edit</a></td>
+              <td><a onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" href="/products_delete/<%= product.product_id%>" role="button">Delete</a></td>
         
         </tr>
          <% }); %>
