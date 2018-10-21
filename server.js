@@ -66,7 +66,7 @@ app.get('/products/:pid', function (req, res) {
 
 app.get('/users/:users_id', function (req, res) {
     var users_id = req.params.users_id;
-    var sql = "select * from users where users_id ="+users_id;
+    var sql = "select * from users where users_id ="+ users_id;
     db.any(sql)
     .then(function(data){
         console.log('DATA:'+data);
