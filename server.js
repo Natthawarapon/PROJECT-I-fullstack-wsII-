@@ -5,7 +5,8 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
-
+var moment = require('moment');
+moment().format();
 
 
 //app.get('/test', function (request, respone) {
@@ -49,12 +50,13 @@ app.get('/products', function (req, res) {
 
 app.get('/products/:product_id', function (req, res) {
  var product_id = req.params.product_id;
+ var times = moment().format('MMMM Do YYYY, h:mm:ss a');
  var sql ="select * from products where product_id = "+ product_id;
         
     db.any(sql)
     .then(function(data){
         console.log('DATA:'+data);
-        res.render('pages/product_edit',{product:data[0]})
+        res.render('pages/product_edit',{product:data[0],time :times})
         
     })
     .catch(function(error){
@@ -66,11 +68,12 @@ app.get('/products/:product_id', function (req, res) {
 
 app.get('/users/:users_id', function (req, res) {
     var users_id = req.params.users_id;
+    var times = moment().format('MMMM Do YYYY, h:mm:ss a');
     var sql = "select * from users where users_id ="+ users_id;
     db.any(sql)
     .then(function(data){
         console.log('DATA:'+data);
-        res.render('pages/users_edit',{users:data[0]})
+        res.render('pages/users_edit',{users:data[0],time:times})
         
     })
     .catch(function(error){
@@ -181,15 +184,17 @@ app.get('/users_delete/:users_id', function (req, res) {
 
 });
 app.get('/insertpro', function (req, res) {
-    res.render('pages/insertpro')
+    var time = moment().format();
+    res.render('pages/insertpro', { time: time});
 });
 
 app.post('/products/insertpro',function(req,res){
     var product_id = req.body.product_id;
     var title = req.body.title;
     var price = req.body.price;
-    var sql =`INSERT INTO products (product_id, title, price)
-    VALUES ('${product_id}', '${title}', '${price}')`;
+    var time = req.body.time;
+    var sql =`INSERT INTO products (product_id, title, price,created_at)
+    VALUES ('${product_id}', '${title}', '${price}', '${time}')`;
   
     console.log('UPDATE:' + sql);
     db.any(sql)
@@ -205,15 +210,17 @@ app.post('/products/insertpro',function(req,res){
 });
 
 app.get('/insertusers', function (req, res) {
-    res.render('pages/insertusers')
+    var time = moment().format();
+    res.render('pages/insertusers', { time: time});
 });
 
 app.post('/users/insertusers',function(req,res){
     var users_id = req.body.users_id;
     var email = req.body.email;
     var password = req.body.password;
-    var sql =`INSERT INTO users (users_id, email, password)
-    VALUES ('${users_id}', '${email}', '${password}')`;
+    var time = req.body.time;
+    var sql =`INSERT INTO users (users_id, email, password,created_at)
+    VALUES ('${users_id}', '${email}', '${password}', '${time}')`;
   
     console.log('UPDATE:' + sql);
     db.any(sql)
