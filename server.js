@@ -241,6 +241,36 @@ app.post('/users/insertusers',function(req,res){
 });
 
 
+app.get('/Report_product', function(req, res) {
+    var sql ='select products.product_id,products.title,sum(purchase_items.quantity) as quantity,sum(purchase_items.price) as price from products inner join purchase_items on purchase_items.product_id=products.product_id group by products.product_id;select sum(quantity) as squantity,sum(price) as sprice from purchase_items';
+    db.multi(sql)
+    .then(function  (data) 
+    {
+ 
+        // console.log('DATA' + data);
+        res.render('pages/Report_product', { product: data[0],sum: data[1]});
+    })
+    .catch(function (data) 
+    {
+        console.log('ERROR' + error);
+    })
+});
+
+app.get('/Report_users', function(req, res) {
+    var sql='select purchases.users_id,purchases.name,users.email,sum(purchase_items.price) as price from purchases inner join users on users.users_id=purchases.users_id inner join purchase_items on purchase_items.purchase_id=purchases.purchase_id group by purchases.users_id,purchases.name,users.email order by sum(purchase_items.price) desc LIMIT 25;'
+    db.any(sql)
+        .then(function (data) 
+        {
+            // console.log('DATA' + data);
+            res.render('pages/Report_users', { users : data });
+        })
+        .catch(function (data) 
+        {
+            console.log('ERROR' + error);
+        })
+});
+
+
 
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
