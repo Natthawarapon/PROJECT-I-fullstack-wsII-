@@ -100,7 +100,12 @@ app.get('/users', function (req, res) {
         console.log('ERROR:'+error);
         
     })
-
+    function beforeRender(req, res, done) {
+        // merge in some values for later use in engine
+        // and preserve other values which are already in
+        req.data = Object.assign({}, req.data, {foo: "foo"})
+        done()
+      }
 });
 
 //Update data products 
