@@ -64,9 +64,9 @@ app.get('/products/:pid', function (req, res) {
 });
 
 
-app.get('/users/:id', function (req, res) {
-    var id = req.params.id;
-    var sql = "select * from users where id ="+id;
+app.get('/users/:users_id', function (req, res) {
+    var users_id = req.params.users_id;
+    var sql = "select * from users where users_id ="+users_id;
     db.any(sql)
     .then(function(data){
         console.log('DATA:'+data);
@@ -82,12 +82,12 @@ app.get('/users/:id', function (req, res) {
 app.get('/users', function (req, res) {
     //res.download('./static/index.html');
     //res.redirect('/about'); var pgp =require('pg-promise');
-    var id = req.param('id');
+    var users_id = req.param('users_id');
     var sql = 'select * from users';
-    if (id) {
-        sql += ' where id ='+id+ ' order by id ASC';
+    if (users_id) {
+        sql += ' where users_id ='+ users_id + ' order by users_id ASC';
         }
-    db.any(sql+ ' order by id ASC')
+    db.any(sql+ ' order by users_id ASC')
     .then(function(data){
         console.log('DATA:'+data);
         res.render('pages/users',{users:data})
@@ -122,12 +122,12 @@ app.post('/products/update',function(req,res){
 
 //Update data users 
 app.post('/user/update',function(req,res){
-    var id = req.body.id;
+    var users_id = req.body.users_id;
     var email = req.body.email;
     var password = req.body.password;
     var sql =`UPDATE users 
                 SET email = '${email}', password = '${password}' 
-                WHERE id = '${id}'` ;
+                WHERE users_id = '${users_id}'` ;
   
    
     db.any(sql)
@@ -161,12 +161,12 @@ app.get('/products_delete/:id', function (req, res) {
 
 });
 
-app.get('/users_delete/:id', function (req, res) {
+app.get('/users_delete/:users_id', function (req, res) {
   
-    var id = req.params.id;
+    var users_id = req.params.users_id;
     var sql = 'DELETE FROM users';
-    if (id) {
-        sql += ' WHERE id ='+id; 
+    if (users_id) {
+        sql += ' WHERE users_id ='+user_id; 
         }
     db.any(sql)
     .then(function(data){
@@ -209,11 +209,11 @@ app.get('/insertusers', function (req, res) {
 });
 
 app.post('/users/insertusers',function(req,res){
-    var id = req.body.id;
+    var users_id = req.body.users_id;
     var email = req.body.email;
     var password = req.body.password;
-    var sql =`INSERT INTO users (id, email, password)
-    VALUES ('${id}', '${email}', '${password}')`;
+    var sql =`INSERT INTO users (users_id, email, password)
+    VALUES ('${users_id}', '${email}', '${password}')`;
   
     console.log('UPDATE:' + sql);
     db.any(sql)

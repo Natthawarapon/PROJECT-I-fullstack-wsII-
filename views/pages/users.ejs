@@ -7,7 +7,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>users_id</th>
             <th>Email</th>
             <th>Password</th>
             <th>Edit</th>
@@ -18,11 +18,11 @@
     <tbody id="myusertable">
        <% users.forEach(function(users){ %> 
        <tr>
-            <td scope="row"><%= users.id%></td>
+            <td scope="row"><%= users.users_id%></td>
             <td><%=  users.email%></td>
             <td><%=  users.password%></td>
-            <td><a name="" id="" class="btn btn-danger" href="/users/<%= users.id%>" role="button">Edit</a></td>
-              <td><a name="" id="" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" href="/users_delete/<%= users.id%>" role="button">Delete</a></td>
+            <td><a name="" id="" class="btn btn-danger" href="/users/<%= users.users_id%>" role="button">Edit</a></td>
+              <td><a name="" id="" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" href="/users_delete/<%= users.users_id%>" role="button">Delete</a></td>
         </tr>
          <% }); %>
 </tbody>
