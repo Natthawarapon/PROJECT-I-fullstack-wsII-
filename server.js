@@ -2,53 +2,15 @@ var express = require('express');
 var pgp =require('pg-promise')();
 var db = pgp('postgres://ahxdfxkfgsaqis:548016ebe41fd7a414af39170d5e3455aba9eab191f150bf9055d3e3f54723a8@ec2-54-243-147-162.compute-1.amazonaws.com:5432/d9iij409sspnat?ssl=true')
 var app = express();
-const { Client } =require('pg') 
+
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 var moment = require('moment');
 moment().format();
 
-const client = new Client({
-    host : "localhost",
-    user : "root",
-    password: "root",
-    database: "argon_test",
-    port: 5432
-});
-//connect to the database
-client.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
 
 
-// create a get request that fetches data from database
-app.get('/index', function(req, res) {
-    var queryString = 'SELECT * FROM repository ORDER BY NODES ASC';
-    client.query(queryString, function (err, qres) {
-        if (err) {
-            throw err;
-        }
-        return res.json(qres);
-    });
-    //this can be used to end the mysql connection
-    // connection.end();
-});
-
-//enable cross-domain request.
-var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-};
-app.use(allowCrossDomain);
-app.use(express.static(__dirname + "/public"));
-//run the server on a particular port
-app.listen(3000, function() {
-    console.log("Server listening on port 3000");
-});
 
 //app.get('/test', function (request, respone) {
 //  //  respone.send('<H1>test</H1>');
