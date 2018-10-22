@@ -15,8 +15,8 @@
 </div>
 
    <script>
-        $(document).ready(function () {
-            var SERVER_URL = " https://mysterious-plateau-91777.herokuapp.com/index";
+     $(document).ready(function () {
+            var SERVER_URL = "http://localhost:3000/";
             $.get(SERVER_URL, function (record) {
 							var time = []						
 							var diff = record.rows.map(function(n){

@@ -10,13 +10,12 @@ var moment = require('moment');
 moment().format();
 
 const client = new Client({
-    host : "ec2-54-243-147-162.compute-1.amazonaws.com",
-    user : "ahxdfxkfgsaqis",
-    password : "548016ebe41fd7a414af39170d5e3455aba9eab191f150bf9055d3e3f54723a8",
-    database : "d9iij409sspnat",
-    post : 5432
+    host : "localhost",
+    user : "root",
+    password: "root",
+    database: "argon_test",
+    port: 5432
 });
-
 //connect to the database
 client.connect(function(err) {
     if (err) throw err;
@@ -25,7 +24,31 @@ client.connect(function(err) {
 
 
 // create a get request that fetches data from database
+app.get('/index', function(req, res) {
+    var queryString = 'SELECT * FROM repository ORDER BY NODES ASC';
+    client.query(queryString, function (err, qres) {
+        if (err) {
+            throw err;
+        }
+        return res.json(qres);
+    });
+    //this can be used to end the mysql connection
+    // connection.end();
+});
 
+//enable cross-domain request.
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+};
+app.use(allowCrossDomain);
+app.use(express.static(__dirname + "/public"));
+//run the server on a particular port
+app.listen(3000, function() {
+    console.log("Server listening on port 3000");
+});
 
 //app.get('/test', function (request, respone) {
 //  //  respone.send('<H1>test</H1>');
@@ -36,25 +59,7 @@ app.set('view engine','ejs'); //เอา ejs สร้างให้มัน
 
 app.get('/index', function (req, res) {
      res.render('pages/index');
-     var queryString = 'SELECT * FROM user ORDER BY user_id ASC';
-    client.query(queryString, function (err, qres) {
-        if (err) {
-            throw err;
-        }
-        return res.json(qres);
-    });
-    //this can be used to end the mysql connection
-    // connection.end();
  });
-
- //enable cross-domain request.
-var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-};
-app.use(allowCrossDomain); 
 
  app.get('/about', function (req, res) {
      var name = 'Natthawarapon T.';
