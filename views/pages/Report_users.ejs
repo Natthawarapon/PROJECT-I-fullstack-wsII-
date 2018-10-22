@@ -1,6 +1,7 @@
 <% include ../partials/header %>
 &nbsp;
-<h1 class="text-center">Report:Top 25 Customers by Sales</h1>
+<h1 >Report:Top 25 Customers by Sales</h1>
+<br>
 <table class="table">
     <thead>
         <tr>
@@ -11,7 +12,28 @@
         </tr>
     </thead>
     <tbody>
-    <% users.forEach(function(users) { %>
+<script>
+    <% 
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    var labels = [] 
+       var price = []
+       var color=[]
+    users.forEach(function(users) 
+    { 
+        labels.push("'" + users.name + "'")
+        price.push(users.price)
+        var colors =getRandomColor()
+        color.push("'" +colors + "'");
+        %>
+     
+    </script>
         <tr>
             <td scope="row"><%= users.users_id %></td>
             <td><%= users.name %></td>
@@ -21,5 +43,50 @@
         <% }); %>
     </tbody>
 </table>
+
+<script src="path/to/chartjs/dist/Chart.js"></script>
+
+<br>
+<h1> Chart : Customers by Sales </h1>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col"><br>
+            <h3> Customers by Sales </h3>
+                <canvas id="myChart" width="100" height="100"></canvas>
+                <script>
+
+                    
+                        var ctx = document.getElementById("myChart");
+                        var myChart = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: [<%- labels %>],
+                                datasets: [{
+                                    label: ' price',
+                                    data:[<%= price %>],
+                                    backgroundColor: [<%- color %>],
+                                    borderColor: [
+                                    
+                                        
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero:true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                        </script>
+                     
+            </div>
+        </div>
+    </div>
 
  <% include ../partials/footer %>

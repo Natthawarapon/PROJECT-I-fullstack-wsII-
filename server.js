@@ -24,10 +24,8 @@ app.get('/index', function (req, res) {
  });
 
  app.get('/about', function (req, res) {
-     var name = 'Natthawarapon T.';
-     var hobbies = ['Music','Movie','Programming'];
-     var bdate ='27/06/1997';
-    res.render('pages/about',{ fullname : name , hobbies : hobbies,bdate : bdate });
+     
+    res.render('pages/about');
 });
 
 app.get('/products', function (req, res) {
