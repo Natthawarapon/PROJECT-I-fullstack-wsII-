@@ -22,6 +22,10 @@ app.set('view engine','ejs'); //เอา ejs สร้างให้มัน
 app.get('/', function (req, res) {
      res.render('pages/index');
  });
+ app.get('/index', function (req, res) {
+    res.render('pages/index');
+});
+
 
  app.get('/about', function (req, res) {
      
