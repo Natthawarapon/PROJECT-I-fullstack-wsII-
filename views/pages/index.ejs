@@ -11,6 +11,63 @@
                 <a class="btn btn-primary btn-lg" href="about" role="button">View</a>
             </p>
         </div>  
+
 </div>
-   
+
+   <script>
+        $(document).ready(function () {
+            var SERVER_URL = " https://mysterious-plateau-91777.herokuapp.com/";
+            $.get(SERVER_URL, function (record) {
+							var time = []						
+							var diff = record.rows.map(function(n){
+									start = new Date(n.start_time)
+									end = new Date(n.end_time)
+									total = Math.abs(start-end)
+									time.push(total)
+									console.log(total)
+							});
+
+							new Chart(document.getElementById("wordpress"), {
+  								type: 'line',
+  								data: {
+    									labels: record.rows.map(n => n.nodes),
+   								 		datasets: [{ 
+       							 			data: time ,
+        						 			label: "Speed",
+        									borderColor: "#3e95cd",
+        									fill: false
+      										} 
+											]
+										},
+										options: {
+										title: {
+											display: true,
+											text: 'The Time Taken to calculate the complexity'
+										},
+										scales: {
+    									yAxes: [{
+      									scaleLabel: {
+        									display: true,
+        									labelString: 'Time',
+													ticks: {
+                						fontSize: 40
+            							}
+      									}
+    									}],
+											xAxes: [{
+												scaleLabel: {
+													display: true,
+                          labelString: 'Number of Nodes'
+												}
+											}]
+  									}   
+									}
+								});
+																				});
+															});
+
+
+
+    </script>
+    <canvas id="wordpress"></canvas>
  <% include ../partials/footer %>
