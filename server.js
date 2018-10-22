@@ -2,11 +2,29 @@ var express = require('express');
 var pgp =require('pg-promise')();
 var db = pgp('postgres://ahxdfxkfgsaqis:548016ebe41fd7a414af39170d5e3455aba9eab191f150bf9055d3e3f54723a8@ec2-54-243-147-162.compute-1.amazonaws.com:5432/d9iij409sspnat?ssl=true')
 var app = express();
+const { Client } =require('pg') 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 var moment = require('moment');
 moment().format();
+
+const client = new Client({
+    host : "ec2-54-243-147-162.compute-1.amazonaws.com",
+    user : "ahxdfxkfgsaqis",
+    password : "548016ebe41fd7a414af39170d5e3455aba9eab191f150bf9055d3e3f54723a8",
+    database : "d9iij409sspnat",
+    post : 5432
+});
+
+//connect to the database
+client.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+});
+
+
+// create a get request that fetches data from database
 
 
 //app.get('/test', function (request, respone) {
@@ -18,7 +36,25 @@ app.set('view engine','ejs'); //เอา ejs สร้างให้มัน
 
 app.get('/index', function (req, res) {
      res.render('pages/index');
+     var queryString = 'SELECT * FROM user ORDER BY user_id ASC';
+    client.query(queryString, function (err, qres) {
+        if (err) {
+            throw err;
+        }
+        return res.json(qres);
+    });
+    //this can be used to end the mysql connection
+    // connection.end();
  });
+
+ //enable cross-domain request.
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+};
+app.use(allowCrossDomain); 
 
  app.get('/about', function (req, res) {
      var name = 'Natthawarapon T.';
